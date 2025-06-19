@@ -3,9 +3,12 @@ from pathlib import Path
 from rag import Retriever
 
 
+INPUT_FILE_PATH = "input_files" # Path to the folder containing input files
+OUTPUT_FILE_PATH = "output_files" # Path to the folder where output files will be saved
+
 def main():
-    input_folder = Path(r"C:\Users\bekal\OneDrive\Desktop\AI4SE\Litterature\RAG\test-input")
-    output_folder = Path(r"C:\Users\bekal\OneDrive\Desktop\AI4SE\Litterature\RAG\test-output")
+    input_folder = Path(INPUT_FILE_PATH)
+    output_folder = Path(OUTPUT_FILE_PATH)
     output_folder.mkdir(exist_ok=True)
 
     query = "Summarize the key points of this document or the main argument."
