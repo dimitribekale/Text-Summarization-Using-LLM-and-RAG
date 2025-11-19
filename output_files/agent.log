@@ -1,0 +1,55 @@
+2025-11-19 21:32:19,311 |  INFO     | agent.tools.file_processor | Initializing FileProcessor tool
+2025-11-19 21:32:19,312 |  INFO     | agent.tools.file_processor | FileProcessor ready to process documents
+2025-11-19 21:32:19,312 |  INFO     | agent.tools.retriever | Initializing Retriever tool
+2025-11-19 21:32:19,312 |  WARNING  | agent.tools.retriever | Retriever warning: no documents loaded yet
+2025-11-19 21:32:19,313 |  INFO     | agent.orchestrator | Starting document processing workflow
+2025-11-19 21:32:19,313 |  INFO     | agent.orchestrator | Processing started for batch of 5 documents
+2025-11-19 21:42:59,780 |  INFO     | agent.tools.file_processor | Initializing FileProcessor tool
+2025-11-19 21:42:59,796 |  INFO     | agent.tools.file_processor | FileProcessor ready to process documents
+2025-11-19 21:42:59,796 |  INFO     | agent.tools.retriever | Initializing Retriever tool
+2025-11-19 21:42:59,796 |  WARNING  | agent.tools.retriever | Retriever warning: no documents loaded yet
+2025-11-19 21:42:59,796 |  INFO     | agent.orchestrator | Starting document processing workflow
+2025-11-19 21:42:59,796 |  INFO     | agent.orchestrator | Processing started for batch of 5 documents
+2025-11-19 21:45:28,515 |  INFO     | agent.tools.file_processor | Initializing FileProcessor tool
+2025-11-19 21:45:28,515 |  INFO     | agent.tools.file_processor | FileProcessor ready to process documents
+2025-11-19 21:45:28,515 |  INFO     | agent.tools.retriever | Initializing Retriever tool
+2025-11-19 21:45:28,515 |  WARNING  | agent.tools.retriever | Retriever warning: no documents loaded yet
+2025-11-19 21:45:28,517 |  INFO     | agent.orchestrator | Starting document processing workflow
+2025-11-19 21:45:28,517 |  INFO     | agent.orchestrator | Processing started for batch of 5 documents
+2025-11-19 21:51:18,934 |  INFO     | agent.test | This is INFO level - in console and file
+2025-11-19 21:51:18,934 |  WARNING  | agent.test | This is WARNING level - in console and file (yellow)
+2025-11-19 21:51:18,934 |  ERROR    | agent.test | This is ERROR level - in console and file (red)
+2025-11-19 21:51:18,934 |  CRITICAL | agent.test | This is CRITICAL level - in console and file (red bold)
+2025-11-19 21:51:18,934 |  INFO     | agent.tools.file_processor | Initializing FileProcessor tool
+2025-11-19 21:51:18,934 |  INFO     | agent.tools.file_processor | FileProcessor ready to process documents
+2025-11-19 21:51:18,934 |  INFO     | agent.tools.retriever | Initializing Retriever tool
+2025-11-19 21:51:18,934 |  WARNING  | agent.tools.retriever | Retriever warning: no documents loaded yet
+2025-11-19 21:51:18,934 |  INFO     | agent.orchestrator | Starting document processing workflow
+2025-11-19 21:51:18,949 |  INFO     | agent.orchestrator | Processing started for batch of 5 documents
+2025-11-19 21:56:10,713 |  INFO     | agent.test | This is INFO level - in console and file
+2025-11-19 21:56:10,713 |  WARNING  | agent.test | This is WARNING level - in console and file (yellow)
+2025-11-19 21:56:10,714 |  ERROR    | agent.test | This is ERROR level - in console and file (red)
+2025-11-19 21:56:10,714 |  CRITICAL | agent.test | This is CRITICAL level - in console and file (red bold)
+2025-11-19 21:56:10,714 |  INFO     | agent.tools.file_processor | Initializing FileProcessor tool
+2025-11-19 21:56:10,714 |  INFO     | agent.tools.file_processor | FileProcessor ready to process documents
+2025-11-19 21:56:10,714 |  INFO     | agent.tools.retriever | Initializing Retriever tool
+2025-11-19 21:56:10,714 |  WARNING  | agent.tools.retriever | Retriever warning: no documents loaded yet
+2025-11-19 21:56:10,714 |  INFO     | agent.orchestrator | Starting document processing workflow
+2025-11-19 21:56:10,714 |  INFO     | agent.orchestrator | Processing started for batch of 5 documents
+2025-11-19 21:58:26,144 |  DEBUG    | agent.test | This is DEBUG level - only in file, not in console
+2025-11-19 21:58:26,144 |  INFO     | agent.test | This is INFO level - in console and file
+2025-11-19 21:58:26,144 |  WARNING  | agent.test | This is WARNING level - in console and file (yellow)
+2025-11-19 21:58:26,144 |  ERROR    | agent.test | This is ERROR level - in console and file (red)
+2025-11-19 21:58:26,144 |  CRITICAL | agent.test | This is CRITICAL level - in console and file (red bold)
+2025-11-19 21:58:26,144 |  DEBUG    | agent.tools.file_processor | FileProcessor debug: checking PDF dependencies
+2025-11-19 21:58:26,144 |  INFO     | agent.tools.file_processor | Initializing FileProcessor tool
+2025-11-19 21:58:26,144 |  DEBUG    | agent.tools.file_processor | FileProcessor debug: loading embedding model
+2025-11-19 21:58:26,144 |  INFO     | agent.tools.file_processor | FileProcessor ready to process documents
+2025-11-19 21:58:26,144 |  DEBUG    | agent.tools.retriever | Retriever debug: initializing similarity search
+2025-11-19 21:58:26,144 |  INFO     | agent.tools.retriever | Initializing Retriever tool
+2025-11-19 21:58:26,144 |  DEBUG    | agent.tools.retriever | Retriever debug: loading embeddings
+2025-11-19 21:58:26,144 |  WARNING  | agent.tools.retriever | Retriever warning: no documents loaded yet
+2025-11-19 21:58:26,144 |  DEBUG    | agent.orchestrator | Orchestrator debug: validating 5 files
+2025-11-19 21:58:26,144 |  INFO     | agent.orchestrator | Starting document processing workflow
+2025-11-19 21:58:26,144 |  DEBUG    | agent.orchestrator | Orchestrator debug: checking Ollama connection
+2025-11-19 21:58:26,144 |  INFO     | agent.orchestrator | Processing started for batch of 5 documents
