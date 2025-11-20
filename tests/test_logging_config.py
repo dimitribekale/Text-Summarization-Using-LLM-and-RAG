@@ -28,8 +28,11 @@ class TestSetupLogging:
         logger = logging.getLogger("agent")
 
         # Check that at least one StreamHandler exists
+        # But not file handler.
         has_stream_handler = any(
-            isinstance(h, logging.StreamHandler)
+            isinstance(h, logging.StreamHandler) and not isinstance(
+                h, logging.FileHandler
+            )
             for h in logger.handlers
         )
         assert has_stream_handler

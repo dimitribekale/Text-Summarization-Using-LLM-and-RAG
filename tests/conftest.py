@@ -1,14 +1,34 @@
+import sys
 import pytest
+import logging
 from pathlib import Path
+
+ROOT_DIR = Path(__file__).parent.parent
+sys.path.insert(0, str(ROOT_DIR))
+
 from src.config import Config
+
+@pytest.fixture(autouse=True)
+def reset_logging():
+    """
+    Reset logging before each test.
+    Removes all handlers so setup_logging() can configure
+    fresh logging for each test.
+    """
+    logger = logging.getLogger("agent")
+    for handler in logger.handlers[:]:
+        logger.removeHandler(handler)
+
+    yield
+    
+    for handler in logger.handlers[:]:
+        logger.removeHandler(handler)
 
 
 @pytest.fixture
 def config():
     """
     Provides a Config instance for tests.
-
-    Loads from .env file.
     """
     return Config()
 
