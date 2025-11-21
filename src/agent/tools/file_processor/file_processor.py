@@ -157,7 +157,7 @@ class FileProcessor(Tool):
             text = text[:earliest_match.start()]
             self.logger.debug(f"Removed text after: {earliest_match.group()}")
 
-        return text.split()
+        return text.strip()
 
     def _chunk_text(self, text: str, chunk_size: int, overlap: int) -> list[str]:
         """
