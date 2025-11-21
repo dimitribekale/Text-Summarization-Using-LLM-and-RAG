@@ -86,7 +86,7 @@ class FileProcessor(Tool):
             return FileProcessorOutput(
                 success=False,
                 error_message=str(e),
-                filename=input_data.file_path
+                filename=Path(input_data.file_path).name
             )
         except Exception as e:
             logger.error(f"Unexpected error in FileProcessor: {str(e)}", exc_info=True)
