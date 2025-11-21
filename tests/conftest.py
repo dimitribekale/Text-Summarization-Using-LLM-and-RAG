@@ -8,19 +8,23 @@ sys.path.insert(0, str(ROOT_DIR))
 
 from src.config import Config
 
-@pytest.fixture(autouse=True)
+@pytest.fixture(autouse=True, scope="function")
 def reset_logging():
     """
     Reset logging before each test.
     Removes all handlers so setup_logging() can configure
     fresh logging for each test.
+
+    This runs BEFORE and AFTER each test function.
     """
     logger = logging.getLogger("agent")
+    # Remove any existing handlers BEFORE test
     for handler in logger.handlers[:]:
         logger.removeHandler(handler)
 
     yield
-    
+
+    # Remove handlers AFTER test (cleanup)
     for handler in logger.handlers[:]:
         logger.removeHandler(handler)
 

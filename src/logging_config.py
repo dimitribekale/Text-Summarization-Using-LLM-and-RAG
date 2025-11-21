@@ -11,7 +11,10 @@ def setup_logging(config: Config) -> None:
     logger = logging.getLogger("agent")
 
     if logger.hasHandlers():
+        print(f"DEBUG: setup_logging returning early. Handlers: {len(logger.handlers)}")
         return
+
+    print(f"DEBUG: setup_logging proceeding. Handlers: {len(logger.handlers)}")
     # Convert log level string to logging constant
     # "INFO" -> logging.INFO, "DEBUG" -> logging.DEBUG etc...
     log_level = getattr(logging, config.log_level.upper())
