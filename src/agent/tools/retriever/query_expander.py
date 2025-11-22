@@ -39,7 +39,7 @@ class QueryExpander:
                chunks: list[str],
                embeddings: list[list[float]],
                max_expansions: int = 3,
-               ) -> list[str]:
+               ) -> str:
         """
         Expand query with semantically related terms from chunks.
 
@@ -53,9 +53,9 @@ class QueryExpander:
             List of expanded query terms (includes original query)
         """
         try:
-            if not chunks or not embeddings:
+            if len(chunks) == 0 or len(embeddings) == 0:
                 self.logger.warning("Cannot expand query with empty chunks/embeddings")
-                return [query]
+                return query
             if len(chunks) != len(embeddings):
                 raise QueryExpansionError("Chunks and embedding count mismatch")
             
@@ -73,14 +73,28 @@ class QueryExpander:
                     np.linalg.norm(query_vec) * np.linalg.norm(chunk_vec) + 1e-8
                 )
                 similarities.append((i, similarity))
-            top_indices = sorted(similarities, key=lambda x: x[1], reverse=True)[:max_expansions]
-            # Extract meaningful terms from top chunks
-            # Simple strategy: take first few words from each top chunk
+
+            SIMILARITY_THRESHOLD = 0.7
+
+            top_indices = [
+                (idx, sim) for idx, sim in sorted(similarities, key=lambda x: x[1], reverse=True)
+                if sim > SIMILARITY_THRESHOLD
+            ][:max_expansions]
+
+            if not top_indices:
+                self.logger.debug("No chunks. similar enough for expansion")
+                return query
+
             expanded_terms = [query]
+            query_words_lower = set(query.lower().split()) # Avoid duplicates
+
             for idx, similarity in top_indices:
                 chunk = chunks[idx]
                 # Extract first few words, but skip very short ones
-                words = [w for w in chunk.split()[:5] if len(w) > 3]
+                words = [
+                    w for w in chunk.split()[:5]
+                    if len(w) > 3 and w.lower() not in query_words_lower
+                ]
 
                 if words:
                     # Add the first meaningful phrase from this chunk
@@ -88,13 +102,13 @@ class QueryExpander:
                     expanded_terms.append(term)
             self.logger.debug(
                 f"Query expanded: original='{query}' -> "
-                f"{len(expanded_terms)} total terms"
+                f"{len(expanded_terms)} total terms (from {len(top_indices)} similar chunks)"
             )
-            return expanded_terms[:1 + max_expansions] # Original + max_expansions
+            return " ".join(expanded_terms[:1 + max_expansions]) # Original + max_expansions
         
         except QueryExpansionError:
             raise
         except Exception as e:
             self.logger.error(f"Query expansion failed: {str(e)}")
-            return [query] # Fall back to original query
+            return query # Fall back to original query
 

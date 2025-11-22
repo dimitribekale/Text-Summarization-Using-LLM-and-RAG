@@ -57,7 +57,7 @@ class Reranker:
                 f"Cross-encoder reranking complete. Mean: {np.mean(normalized_scores):.4f}, "
                 f"Max: {np.max(normalized_scores):.4f}"
             )
-            return normalized_scores.tolist()
+            return normalized_scores
 
         except CrossEncoderError:
             raise

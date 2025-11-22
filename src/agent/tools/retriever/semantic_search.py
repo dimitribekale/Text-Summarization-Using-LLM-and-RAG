@@ -28,7 +28,7 @@ class SemanticSearcher:
                 ) from e
         return self._model
     
-    def score(self, query: str, embeddings: list[list[float]]) -> list[float]:
+    def score(self, query: str, embeddings: list[list[float]]) -> np.ndarray:
         """
         Uses cosine similarity between query and chunk embeddings
         to calculate semantic scores.
@@ -36,8 +36,8 @@ class SemanticSearcher:
             List of similarity scores normalzied to [0, 1]
         """
         try:
-            if not embeddings:
-                return []
+            if len(embeddings) == 0:
+                return np.array([])
             model = self._load_model()
             query_embedding = model.encode([query], convert_to_tensor=False)[0]
             scores =[]
@@ -56,10 +56,10 @@ class SemanticSearcher:
                 f"Semantic scoring complete. Mean: {np.mean(scores):.4f}, "
                 f"Max: {np.max(scores):.4f}" 
             )
-            return scores
+            return np.array(scores)
         
         except SemanticSearchError:
             raise
         except Exception as e:
             self.logger.error(f"Semantic scoring failed: {str(e)}")
-            return [0.0] * len(embeddings)
+            return np.array([0.0] * len(embeddings))

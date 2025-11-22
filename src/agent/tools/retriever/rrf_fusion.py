@@ -20,7 +20,7 @@ class RRFFusion:
              semantic_scores: list[float],
              bm25_weight: float = 0.3,
              semantic_weight: float = 0.7
-             ) -> list[float]:
+             ) -> np.ndarray:
         """
         Fuse two ranking scores using RRF.
         Args:
@@ -52,8 +52,8 @@ class RRFFusion:
                 f"RRF fusion complete. Mean: {np.mean(fused_scores):.6f},"
                 f"Max: {np.max(fused_scores):.6f}"
             )
-            return fused_scores
+            return np.array(fused_scores)
         
         except Exception as e:
             self.logger.error(f"RRF fusion failed: {str(e)}")
-            return [0.0] * len(bm25_scores)
+            return np.array([0.0] * len(bm25_scores))

@@ -1,5 +1,39 @@
+import numpy as np
 from pydantic import BaseModel, Field
+from dataclasses import dataclass
 from src.agent.tools.base import ToolInput, ToolOutput
+
+@dataclass
+class HybridScores:
+    """
+    Container for all scoring stages in hybrid retrieval.
+    Attributes:
+        bm25_scores: Lexical relevance scores
+        semantic_scores: Embedding similarity scores
+        fused_scores: Combined scores after RRF fusion
+        final_scores: Scores after reranking
+    """
+    bm25_scores: np.ndarray
+    semantic_scores: np.ndarray
+    fused_scores: np.ndarray
+    final_scores: np.ndarray
+
+    def __post_init__(self):
+        """Validate that all score arrays have the same length."""
+        lengths = [
+            len(self.bm25_scores),
+            len(self.semantic_scores),
+            len(self.fused_scores),
+            len(self.final_scores)
+        ]
+        if len(set(lengths)) != 1:
+            raise ValueError(
+                f"All score arrays must have same length. "
+                f"Got: bm25={lengths[0]}, semantic={lengths[1]}, "
+                f"fused={lengths[2]}, final={lengths[3]}"
+            )
+
+
 
 class ChunkMetadata(BaseModel):
     """Metadata about a chunk."""
